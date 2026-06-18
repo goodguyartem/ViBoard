@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+manifest="build/install_manifest.txt"
+
+if [[ ! -f "$manifest" ]]; then
+    echo "Error: manifest not found: $manifest"
+    exit 1
+fi
+
+if [[ ! -s "$manifest" ]]; then
+    echo "$manifest is empty. Nothing to uninstall."
+    exit 1
+fi
+
+echo "This will delete the following files installed by CMake and listed in $manifest:"
+cat "$manifest"
+echo
+echo
+
+read -p "Do you want to proceed? (y/N): " -n 1 -r
+echo
+if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then
+    echo "Uninstall cancelled."
+    exit 0
+fi
+echo
+
+sudo xargs -d '\n' -r -a "$manifest" rm -v | tee Uninstall.log
+echo "Uninstall finished."

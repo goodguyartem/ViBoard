@@ -5,8 +5,10 @@
 *.vcxproj.filters
 *.vcxproj.user
 
+# VSC
+.cache
+.vscode
+
 # Project
-**/bin
-res
-*.xcf
-**/releases/*.zip
+/build
+Uninstall.log

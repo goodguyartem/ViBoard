@@ -1,53 +1,86 @@
-# VIBoard
-A lightweight free and open-source soundboard.
-## Key features
-* Consumes minimal resources, especially in background.
-* A dedicated window for each soundboard you add, with the ability to tab between them and place them anywhere on your display.
-* Ability to assign a hotkey to each sound (can be triggered while in almost any application or game).
-* Support for outputing to multiple output devices for mixing soundboards with your microphone input (requires [VB Cable](https://vb-audio.com/Cable/)).
-* Ability to trigger a game's push-to-talk when playing a sound.
-* .mp3 and .wav support.
-* Themes. Who doesn't like themes
+# ViBoard
+Fast Free & Open-Source soundboard.
 
-![Screenshot](https://github.com/goodguyartem/ViBoard/blob/main/screenshots/image2.png?raw=true)
-![Screenshot](https://github.com/goodguyartem/ViBoard/blob/main/screenshots/image3.png?raw=true)
+## Key Features
+* Minimum resource usage, especially in background.
+* Linux (X11 and XWayland) and Windows support.
+* Supports .mp3, .wav, .ogg, and .flac.
+* Create any number of named soundboards and organize them into dedicated windows or tabs.
+* Assign hotkeys to your sound effects to trigger them in other apps or games (if app or game allows).
+* Play using up to 2 output devices simultaneously (such as both your headphones and microphone).
+    * Windows requires [VB Cable](https://vb-audio.com/Cable/) for microphone input.
+* Ability to trigger a game's push-to-talk when a sound is being played.
+* Themes, with support for custom user themes.
 
-## Installing
-Download the latest build from the [Releases](https://github.com/goodguyartem/VIBoard/releases) section and extract the downloaded .zip file into a directory of your choosing (such as C:\Program Files). Currently, only x64 Windows builds are available (until there's demand for other builds).
+![Screenshot](https://github.com/goodguyartem/ViBoard/blob/main/screenshots/screenshot0.png?raw=true)
 
-If you would like to mix your microphone input with your soundboard, download [VB Cable](https://vb-audio.com/Cable/) and use it as your secondary output device. See the Getting Started section of the program's Welcome page for setup instructions.
+## Installation
+Get the latest build from the [Releases](https://github.com/goodguyartem/VIBoard/releases) section for your system and extract them to your installation directory of choice (such as C:\\Program Files\\ViBoard or /opt/viboard). Currently only x64 Windows and Linux binaries are provided.
 
-If you get a "Windows Protected Your PC" prompt, it is normal as the program isn't signed. Simply click "More info" then "Run anyway." (Source code is available.)
+Note: on Windows you'll likely get a "Windows Protected Your PC" prompt the first time you run the program. It's nothing to fear, it just means the program isn't signed. Just click "More info" then "Run anyway". You may also instead inspect the source code and build the binaries yourself.
 
-## Bug Reports / Feature Requests
-As the program is currently in beta, there are bound to be issues. I'll do my best to address all submitted issues and feature requests.
-
-## Building
-### Windows
-Make sure [Premake 5](https://premake.github.io/) is installed and is added to your PATH variable.
-
-Clone the repository with:
+## Build From Source
+The project uses [CMake](https://cmake.org/) to generate build files. Clone the repo into your folder of choice and navigate to it with:
 ```
-git clone --recursive https://github.com/goodguyartem/VIBoard.git
+git clone https://github.com/goodguyartem/viboard.git
+cd ViBoard
 ```
-Navigate to the repository's directory and run the `premake5.lua` build script to generate project files for your IDE of choice. For example, to generate Visual Studio 2022 files:
+### Install Scripts
+If you're building for non-development use, automated install scripts are provided for your convinience if you'd like to use them:
+
+**Linux:**
+```bash
+bash
+
+chmod +x Install # Enable execute permission.
+sudo ./Install   # Run the install script.
+
+# Clean uninstalling is also possible.
+chmod +x Uninstall
+./Uninstall
 ```
-premake5 vs2022
+**Windows:**
+```bat
+cmd
+
+:: Run the install script
+Install.bat
+
+:: Clean uninstalling is also possible.
+Uninstall.bat
 ```
-The included `Build.bat` script can also be ran to generate Visual Studio 2022 files. If you'd like to use MinGW, you can specify so by providing the `--cc=mingw` flag. You can run `premake5 --help` if this is your first time using Premake. 
 
-(Note: So far the project has only been tested with MSVC. Feel free to open an issue if you face problems with other compilers.)
-
-The included [SDL3](https://github.com/libsdl-org/SDL) and [SDL3_Image](https://github.com/libsdl-org/SDL_image) libraries only provide binaries for MSVC and MinGW. If you're using a different compiler you have to obtain appropriate SDL3 binaries for it:
+### Manual
+Configure CMake and create a build directory with:
+``` bash
+cmake -B build
 ```
-git clone https://github.com/libsdl-org/SDL.git
-git clone https://github.com/libsdl-org/SDL_image.git
+To build the project run:
+```bash
+cmake --build build
+```
+This will build with the default configuration. To disable debug symbols and enable optimizations, pass `--config Release`. To use a specific generator, use `-G`. For example, to create an x64 Visual Studio project, run:
+```bat
+cmake --build build -G "Visual Studio 17 2022" -A x64
+```
+Optionally, install the program with:
+```bash
+cmake --install build
 ```
 
-### Other Operating Systems
-Currently, the project is only available for Windows, but adding support for other operating systems is trivial as all Windows-specific code is abstracted away in `src/platform/`. Namely, you'll need to implement system-wide hotkey support, the ability to launch the program on system startup, and a function for sending keyboard input to the OS.
+## Supported OSs
+Currently, there is only support for
+* Windows (only Windows 11 has been tested)
+* Linux (X11 or XWayland).
 
-See the current Windows implementations for reference.
+Native Wayland is currently not supported for Linux builds as implementing system-wide hotkey support is not as trivial as it is in X11 or Win32. I'll likely add at least basic native Wayland support if I don't implement hotkey support as the rest should (hopefully) be trivial, but no promises!
 
-## To-do
-* .ogg support
+Building on other platforms should be possible, but is untested. Since the project uses only minimal dependencies, like GLFW for cross-platform window creation, features outside the scope of these libraries have to be implemented per-platform, such as:
+* System-wide hotkey support (uses Win32 and X11). GLFW will not listen to key presses when the window is not active.
+* Sending faked key presses to the OS to trigger push-to-talk (uses Win32 and X11). GLFW can read but not send input to the best of my knowledge.
+* Opening file browsers and URLs (uses system shell and nativefiledialog-extended). NFD only allows prompting the user to pick folders/files.
+
+If you build without implementing these features, it should simply fall back to the dummy API but I haven't tested this yet.
+
+## Contributions
+If you think you can help make this better, feature requests and contributions are welcomed!

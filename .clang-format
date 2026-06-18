@@ -1,0 +1,30 @@
+---
+BasedOnStyle: LLVM
+UseTab: Always
+IndentWidth: 4
+TabWidth: 4
+ColumnLimit: 120
+PenaltyReturnTypeOnItsOwnLine: 240
+
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLoopsOnASingleLine: false
+BinPackParameters: false
+BinPackArguments: false
+AllowShortCaseLabelsOnASingleLine: true
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AlignCaseColons: false
+
+---
+Language: Cpp
+BreakConstructorInitializers: BeforeColon
+PointerAlignment: Left
+Cpp11BracedListStyle: FunctionCall
+AlignAfterOpenBracket: BlockIndent
+PackConstructorInitializers: Never
+AccessModifierOffset: -4
+BreakTemplateDeclarations: Yes
+IndentPPDirectives: AfterHash
+RequiresClausePosition: SingleLine
