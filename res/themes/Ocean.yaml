@@ -1,0 +1,9 @@
+basedOn: "light"
+
+styleVars:
+  frameRounding: 8
+  grabRounding: 8
+  popupRounding: 8
+  framePadding:
+    x: 8
+    y: 5

@@ -7,22 +7,19 @@ namespace fs = std::filesystem;
 namespace vi {
 namespace {
 fs::path getResDir() noexcept {
-	static const fs::path installResDir = ".." / fs::path(RES_SUBDIR);
-
-	if (fs::exists(installResDir)) {
-		return installResDir;
+	if (fs::exists(INSTALL_RES_DIR)) {
+		return INSTALL_RES_DIR;
 	}
-
 	return "res";
 }
 } // namespace
 
-const fs::path configDir = getConfigDir() / "viboard";
-const fs::path stateDir = getStateHomeDir() / "viboard";
+const fs::path configDir = getConfigDir() / PROJECT_SUBDIR;
+const fs::path stateDir = getStateHomeDir() / PROJECT_SUBDIR;
 const fs::path resDir = getResDir();
 
-const fs::path themesDir = configDir / "themes";
+const fs::path themesDir = resDir / "themes";
 const fs::path configFilePath = configDir / "config.yaml";
-const std::string imGuiIniFilePath = (configDir / "ImGui.ini").string();
+const fs::path imGuiIniFilePath = configDir / "ImGui.ini";
 
 } // namespace vi

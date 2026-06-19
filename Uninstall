@@ -25,5 +25,5 @@ if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then
 fi
 echo
 
-sudo xargs -d '\n' -r -a "$manifest" rm -v | tee Uninstall.log
+xargs -d '\n' -r -a "$manifest" rm -v | tee Uninstall.log
 echo "Uninstall finished."

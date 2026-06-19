@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cmake -B build
+cmake -B build -DCMAKE_INSTALL_PREFIX="~/.local"
 cmake --build build --config Release
 cmake --install build

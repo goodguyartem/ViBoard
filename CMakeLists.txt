@@ -60,14 +60,15 @@ include(cmake/imgui.cmake)
 
 add_executable(ViBoardBin)
 
+set(binName viboard CACHE STRING "Binary output name")
+
 set_target_properties(ViBoardBin PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     DEBUGGER_WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    OUTPUT_NAME viboard
+    OUTPUT_NAME ${binName}
 )
 
-set(PROJECT_RESOURCE_DIR
-    "${CMAKE_INSTALL_DATADIR}/viboard")
+set(resDir ${CMAKE_INSTALL_FULL_DATADIR}/${binName})
 
 configure_file(
     src/Project.hpp.in
@@ -182,5 +183,4 @@ target_compile_definitions(ViBoardBin PRIVATE
 install(TARGETS ViBoardBin 
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-install(DIRECTORY res/ DESTINATION ${CMAKE_INSTALL_DATADIR}/viboard)
+install(DIRECTORY res/ DESTINATION ${resDir})

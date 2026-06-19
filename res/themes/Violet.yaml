@@ -1,0 +1,46 @@
+styleVars:
+  frameRounding: 6
+  grabRounding: 6
+  popupRounding: 6
+  framePadding:
+    x: 6
+    y: 3
+
+colours:
+  header: 0xa155ffff
+  headerHovered: 0xb374ffff
+  headerActive: 0x723db8ff
+
+  tab: 0x532d86ff
+  tabHovered: 0x8a63c1ff
+  tabActive: 0xa155ffff
+  tabActiveSelected: 0x8a63c1ff
+  tabSelectedOverline: 0x00000000
+  tabDimmed: 0x532d86ff
+  tabDimmedSelected: 0xa155ffff
+  tabDimmedSelectedOverline: 0x00000000
+
+  titleBg: 0x42246cff
+  titleBgCollapsed: 0x42246cff
+  titleBgActive: 0x723db8ff
+
+  button: 0x802cffff
+  buttonHovered: 0x9f63ffff
+  buttonActive: 0x5a20b7ff
+
+  frameBg: 0x802cffff
+  frameBgHovered: 0xb374ffff
+  frameBgActive: 0x723db8ff
+
+  checkboxSelectedBg: 0x802cffff
+  checkMark: 0xfbe2ffff
+
+  sliderGrab: 0x42246ccc
+  sliderGrabActive: 0xa155ffff
+
+  resizeGrip: 0xa155ffff
+  resizeGripHovered: 0xb374ffff
+  resizeGripActive: 0x723db8ff
+
+  windowBg: 0x13111cff
+  dockingPreview: 0x802cffff

@@ -81,7 +81,9 @@ void App::init() {
 #endif
 	ImGui_ImplOpenGL3_Init(glslVersion);
 
-	if (std::filesystem::exists(configFilePath)) {
+	fs::create_directory(configDir);
+
+	if (fs::exists(configFilePath)) {
 		spdlog::debug("Found {}", configFilePath.string());
 		soundboard.deserialize(configFilePath);
 
@@ -108,9 +110,9 @@ void App::init() {
 
 	// -- TTF function also loads OTF files. --
 	std::array<fs::path, 3> fonts;
-	fonts[0] = resDir / "CreatoDisplayRegular.otf";
-	fonts[1] = resDir / "CreatoDisplayBold.otf";
-	fonts[2] = resDir / "CoolveticaRg.otf";
+	fonts[0] = resDir / "fonts" / "CreatoDisplayRegular.otf";
+	fonts[1] = resDir / "fonts" / "CreatoDisplayBold.otf";
+	fonts[2] = resDir / "fonts" / "CoolveticaRg.otf";
 
 	for (const fs::path& path : fonts) {
 		if (!fs::exists(path)) {

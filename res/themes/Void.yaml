@@ -1,0 +1,12 @@
+basedOn: "dark"
+
+styleVars:
+  frameRounding: 6
+  grabRounding: 6
+  popupRounding: 6
+  framePadding:
+    x: 8
+    y: 4
+
+colours:
+  windowBg: 0x13111cff

@@ -1,0 +1,48 @@
+basedOn: light
+
+styleVars:
+  frameRounding: 8
+  grabRounding: 8
+  popupRounding: 8
+  framePadding:
+    x: 8
+    y: 5
+
+colours:
+  header: 0xff6fa6ff
+  headerHovered: 0xff86b6ff
+  headerActive: 0xb66082ff
+
+  tabSelectedOverline: 0x00000000
+  tabDimmedSelectedOverline: 0x00000000
+
+  titleBg: 0xc57394ff
+  titleBgCollapsed: 0xc57394ff
+  titleBgActive: 0xff95bfff
+
+  tab: 0xca80aaff
+  tabHovered: 0xba94abff
+  tabDimmed: 0xa4688bff
+  tabActive: 0xffcbebff
+  tabDimmedSelected: 0xffcbebff
+
+  button: 0xff81dbff
+  buttonHovered: 0xff99e0ff
+  buttonActive: 0xb04891ff
+
+  frameBg: 0xff81dbff
+  frameBgHovered: 0xff99e0ff
+  frameBgActive: 0xb04891ff
+
+  checkboxSelectedBg: 0xff6bd3ff
+  checkMark: 0xfbe2ffff
+
+  sliderGrab: 0xffe4eacc
+  sliderGrabActive: 0x9b6f7fff
+
+  resizeGrip: 0xa155ffff
+  resizeGripHovered: 0xb374ffff
+  resizeGripActive: 0x723db8ff
+
+  windowBg: 0xffe7f5ff
+  dockingPreview: 0xff81dbff

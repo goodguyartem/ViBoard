@@ -1,7 +1,6 @@
 #pragma once
 
 #include <filesystem>
-#include <string>
 
 namespace vi {
 
@@ -11,5 +10,5 @@ extern const std::filesystem::path resDir;
 
 extern const std::filesystem::path themesDir;
 extern const std::filesystem::path configFilePath;
-extern const std::string imGuiIniFilePath;
+extern const std::filesystem::path imGuiIniFilePath;
 } // namespace vi

@@ -43,7 +43,8 @@ void initImGui() noexcept {
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-	io.IniFilename = imGuiIniFilePath.c_str();
+	static const std::string filename = imGuiIniFilePath.string();
+	io.IniFilename = filename.c_str();
 	spdlog::debug("ImGui ini path set to: {}", io.IniFilename);
 }
 

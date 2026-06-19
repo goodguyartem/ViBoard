@@ -1,0 +1,12 @@
+basedOn: "classic"
+
+styleVars:
+  frameRounding: 8
+  grabRounding: 8
+  popupRounding: 8
+  framePadding:
+    x: 8
+    y: 5
+
+colours:
+  windowBg: 0x13111cff
