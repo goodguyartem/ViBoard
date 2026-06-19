@@ -33,7 +33,7 @@ If you're building for non-development use, automated install scripts are provid
 bash
 
 chmod +x Install # Enable execute permission.
-sudo ./Install   # Run the install script.
+./Install        # Run the install script.
 
 # Clean uninstalling is also possible.
 chmod +x Uninstall
@@ -80,3 +80,4 @@ If you build without implementing these features, it should simply fall back to 
 
 ## Contributions
 If you think you can help make this better, feature requests and contributions are welcomed!
+
