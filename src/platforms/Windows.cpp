@@ -1,7 +1,5 @@
 #include "Windows.hpp"
 
-#include <windows.h>
-
 #include <string>
 
 namespace vi {

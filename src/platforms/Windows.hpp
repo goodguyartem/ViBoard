@@ -1,7 +1,8 @@
 #include "Platform.hpp"
-#include <GLFW/glfw3.h>
 
-#include <BaseTsd.h>
+#include <Windows.h>
+
+#include <GLFW/glfw3.h>
 
 namespace vi {
 constexpr UINT glfwKeyToVK(int key) noexcept {

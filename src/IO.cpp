@@ -36,7 +36,7 @@ void initLogger(const LaunchConfig& config) {
 		sinks.push_back(std::move(consoleSink));
 	}
 	if (!(config.flags & clFlags::noFileLogging)) {
-		auto fileSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(stateDir / "Log.txt", true);
+		auto fileSink = std::make_shared<spdlog::sinks::basic_file_sink_mt>((stateDir / "Log.txt").string(), true);
 		fileSink->set_level(spdlog::level::trace);
 		sinks.push_back(std::move(fileSink));
 	}

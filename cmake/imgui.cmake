@@ -3,7 +3,7 @@ include(FetchContent)
 FetchContent_Declare(
     imgui
     GIT_REPOSITORY https://github.com/ocornut/imgui.git
-    GIT_TAG origin/docking
+    GIT_TAG docking
 )
 
 FetchContent_MakeAvailable(imgui)
@@ -28,7 +28,6 @@ target_include_directories(imgui PUBLIC
     ${IMGUI_DIR}/backends
 )
 
-find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 
 target_link_libraries(imgui PUBLIC

@@ -81,11 +81,7 @@ void App::init() {
 #endif
 	ImGui_ImplOpenGL3_Init(glslVersion);
 
-	if (!fs::exists(configDir)) {
-		spdlog::debug("{} not found, creating directory.", configDir.string());
-		fs::create_directory(configDir);
-
-	} else if (std::filesystem::exists(configFilePath)) {
+	if (std::filesystem::exists(configFilePath)) {
 		spdlog::debug("Found {}", configFilePath.string());
 		soundboard.deserialize(configFilePath);
 

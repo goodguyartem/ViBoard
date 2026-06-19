@@ -1,3 +1,4 @@
+#define MINIAUDIO_IMPLEMENTATION
 #include "Audio.hpp"
 #include "Exceptions.hpp"
 
@@ -5,9 +6,6 @@
 
 #define STB_VORBIS_IMPLEMENTATION
 #include <stb_vorbis.c>
-
-#define MINIAUDIO_IMPLEMENTATION
-#include <miniaudio.h>
 
 namespace vi {
 MAContext::MAContext() {

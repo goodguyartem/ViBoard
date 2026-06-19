@@ -59,11 +59,7 @@ To build the project run:
 ```bash
 cmake --build build
 ```
-This will build with the default configuration. To disable debug symbols and enable optimizations, pass `--config Release`. To use a specific generator, use `-G`. For example, to create an x64 Visual Studio project, run:
-```bat
-cmake --build build -G "Visual Studio 17 2022" -A x64
-```
-Optionally, install the program with:
+This will build with the default configuration. To disable debug symbols and enable optimizations, pass `--config Release`. Optionally, install the program with:
 ```bash
 cmake --install build
 ```

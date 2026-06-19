@@ -103,37 +103,62 @@ endif()
 target_sources(ViBoardBin PRIVATE 
     src/Main.cpp
     src/App.cpp
+    src/App.hpp
     src/Soundboard.cpp
+    src/Soundboard.hpp
     src/Window.cpp
+    src/Window.hpp
     src/CommandLine.cpp
+    src/CommandLine.hpp
     src/Audio.cpp
+    src/Audio.hpp
     src/Util.cpp
+    src/Util.hpp
     src/YamlTypes.cpp
+    src/YamlTypes.hpp
     src/Paths.cpp
+    src/Paths.hpp
     src/IO.cpp
+    src/IO.hpp
     src/platforms/Platform.cpp
+    src/platforms/Platform.hpp
     src/hotkeys/HotkeyRegistry.cpp
+    src/hotkeys/HotkeyRegistry.hpp
 )
 
 if (WIN32)
     target_sources(ViBoardBin PRIVATE 
         src/hotkeys/WindowsHotkeyRegistry.cpp
+        src/hotkeys/WindowsHotkeyRegistry.hpp
         src/platforms/Windows.cpp
+        src/platforms/Windows.hpp
     )
+    target_compile_definitions(ViBoardBin PRIVATE NOMINMAX)
+
 elseif(LINUX)
     target_sources(ViBoardBin PRIVATE src/platforms/Linux.cpp)
     if (X11_FOUND)
         target_sources(ViBoardBin PRIVATE 
             src/hotkeys/X11HotkeyRegistry.cpp
+            src/hotkeys/X11HotkeyRegistry.hpp
             src/platforms/X11.cpp
+            src/platforms/X11.hpp
+        )
+
+        target_compile_definitions(ViBoardBin PRIVATE
+            GLFW_EXPOSE_NATIVE_X11
         )
     endif()
 else()
     target_sources(ViBoardBin PRIVATE 
         src/hotkeys/DummyHotkeyRegistry.cpp
+        src/hotkeys/DummyHotkeyRegistry.hpp
         src/platforms/Dummy.cpp
     )
 endif()
+
+get_target_property(src ViBoardBin SOURCES)
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" PREFIX "src" FILES ${src})
 
 # Local deps
 add_subdirectory(deps/stb)
@@ -151,8 +176,6 @@ target_link_libraries(ViBoardBin PRIVATE
 )
 
 target_compile_definitions(ViBoardBin PRIVATE
-    GLFW_EXPOSE_NATIVE_X11
-    GLFW_EXPOSE_NATIVE_WAYLAND
     $<$<CONFIG:Release>:NDEBUG>
 )
 

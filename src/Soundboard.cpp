@@ -2,7 +2,6 @@
 #include "App.hpp"
 #include "Audio.hpp"
 #include "Exceptions.hpp"
-#include "GLFW/glfw3.h"
 #include "Paths.hpp"
 #include "Project.hpp"
 #include "Util.hpp"
@@ -11,10 +10,11 @@
 #include "hotkeys/HotkeyRegistry.hpp"
 #include "platforms/Platform.hpp"
 
-#include <cstdlib>
 #include <imgui.h>
 #include <imgui_internal.h>
 #include <misc/cpp/imgui_stdlib.h>
+
+#include <GLFW/glfw3.h>
 
 #include <yaml-cpp/null.h>
 
@@ -24,6 +24,7 @@
 #include <exception>
 #include <format>
 #include <fstream>
+#include <cstdlib>
 
 namespace fs = std::filesystem;
 
@@ -35,7 +36,7 @@ Soundboard::Soundboard(const App& app)
 }
 
 void Soundboard::loadTheme(fs::path path) {
-	vi::loadTheme(YAML::LoadFile(path), ImGui::GetStyle());
+	vi::loadTheme(YAML::LoadFile(path.string()), ImGui::GetStyle());
 	theme = std::move(path);
 }
 
@@ -97,9 +98,9 @@ void Soundboard::serialize(const fs::path& path) noexcept {
 	}
 }
 
-void Soundboard::deserialize(const std::filesystem::path& path) noexcept {
+void Soundboard::deserialize(const fs::path& path) noexcept {
 	try {
-		YAML::Node config = YAML::LoadFile(path);
+		YAML::Node config = YAML::LoadFile(path.string());
 
 		bool maximize = false;
 		if (const auto node = config["maximized"]) {
@@ -150,7 +151,7 @@ void Soundboard::deserialize(const std::filesystem::path& path) noexcept {
 			}
 		}
 		if (const auto node = config["scale"]) {
-			scale = node.as<int>();
+			scale = node.as<float>();
 			applyScale();
 		}
 
@@ -474,7 +475,7 @@ void Soundboard::showGeneralOptions() noexcept {
 		openInFileBrowser(themesDir);
 	}
 
-	if (ImGui::SliderInt("UI Scale", &scale, 1, 3)) {
+	if (ImGui::SliderFloat("UI Scale", &scale, 1.0f, 3.0f, "%.0f")) {
 		applyScale();
 	}
 	ImGui::NewLine();
@@ -950,7 +951,7 @@ void Soundboard::applyScale() const noexcept {
 
 void populateSoundTab(SoundboardTab& tab) {
 	for (auto& it : fs::directory_iterator(tab.path)) {
-		std::string name = it.path().filename();
+		std::string name = it.path().filename().string();
 		if (tab.sounds.contains(name)) {
 			continue;
 		}

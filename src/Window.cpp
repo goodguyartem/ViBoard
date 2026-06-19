@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-#include <GLFW/glfw3native.h>
+#include <GLFW/glfw3.h>
 
 namespace vi {
 const char* getGlfwErrorStr() noexcept {

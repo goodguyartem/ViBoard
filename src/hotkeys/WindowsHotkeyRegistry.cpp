@@ -1,16 +1,17 @@
 #include "WindowsHotkeyRegistry.hpp"
 #include "../platforms/Windows.hpp"
 
+#include <Windows.h>
+
 #include <GLFW/glfw3.h>
 
 #include <spdlog/spdlog.h>
 
-#include <winuser.h>
-
 #include <utility>
+#include <cassert>
 
 namespace vi {
-std::optional<size_t> WindowsHotkeyRegistry::registerHotkey(Hotkey hotkey) noexcept {
+std::optional<size_t> WindowsHotkeyRegistry::registerHotkey(const Hotkey& hotkey) noexcept {
 	assert(hotkey.callback);
 
 	static size_t nextId = 0;
@@ -28,7 +29,7 @@ std::optional<size_t> WindowsHotkeyRegistry::registerHotkey(Hotkey hotkey) noexc
 		return std::nullopt;
 	}
 
-	hotkeys.push_back(std::move(hotkey));
+	hotkeys.push_back(hotkey);
 	return nextId++;
 }
 
@@ -40,6 +41,7 @@ bool WindowsHotkeyRegistry::unregisterHotkey(size_t id) noexcept {
 	}
 
 	hotkeys.erase(hotkeys.begin() + id);
+	return true;
 }
 
 const Hotkey& WindowsHotkeyRegistry::getHotkey(size_t id) const noexcept {

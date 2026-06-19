@@ -2,8 +2,6 @@
 
 #include "HotkeyRegistry.hpp"
 
-#include <cassert>
-
 namespace vi {
 class WindowsHotkeyRegistry : public HotkeyRegistry {
 public:

@@ -127,7 +127,7 @@ private:
 
 	std::filesystem::path theme;
 	std::vector<std::filesystem::path> foundThemes;
-	int scale = 1;
+	float scale = 1.0f;
 
 	MessagePopups popups;
 	bool bindHotkeyOpen = false;
